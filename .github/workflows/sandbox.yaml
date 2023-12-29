@@ -1,0 +1,17 @@
+name: Sandbox
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    uses: lsc-sde/lsc-sde/.github/workflows/acr-build.yaml@main
+    with:
+      azureKeyvault: ${{ vars.sandbox_az_keyvault }}
+      repository: datascience
+      imageName: dfu-jupyterlab
+    secrets:
+      azureCredentials: ${{ secrets.sandbox_az_credentials }}
